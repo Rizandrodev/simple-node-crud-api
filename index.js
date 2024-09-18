@@ -1,29 +1,7 @@
 import http from 'http';
-import fs from 'fs';
-import path from 'path';
+import { getUsers, saveUsers } from './db/database.js'; // Importando as funções do database.js
 
-const PORT = 3000;
-const filePath = path.join(__dirname, 'users.json');
-
-// Função para ler os usuários do arquivo JSON
-const getUsers = () => {
-    try {
-        const data = fs.readFileSync(filePath, 'utf8');
-        return JSON.parse(data);
-    } catch (error) {
-        console.error('Error reading users file:', error);
-        return [];
-    }
-};
-
-// Função para salvar os usuários no arquivo JSON
-const saveUsers = (users) => {
-    try {
-        fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
-    } catch (error) {
-        console.error('Error writing users file:', error);
-    }
-};
+const PORT = 4000;
 
 // Servidor HTTP
 const server = http.createServer((req, res) => {
